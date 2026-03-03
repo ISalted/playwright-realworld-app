@@ -4,7 +4,7 @@ export class UserService {
   constructor(private readonly request: APIRequestContext) {}
 
   async getAll() {
-    return await this.request.get('/users');
+    return await this.request.get("/users");
   }
 
   async getById(userId: string) {
@@ -12,13 +12,13 @@ export class UserService {
   }
 
   async search(query: string) {
-    return await this.request.get('/users/search', {
+    return await this.request.get("/users/search", {
       params: { q: query },
     });
   }
 
   async create(userData: any) {
-    return await this.request.post('/users', {
+    return await this.request.post("/users", {
       data: userData,
     });
   }
@@ -33,14 +33,23 @@ export class UserService {
     avatar?: string;
     balance?: number;
   }) {
-    return await this.request.post('/users', {
+    return await this.request.post("/users", {
       data: {
         ...userData,
         email: userData.email || `${userData.username}@example.com`,
-        phoneNumber: userData.phoneNumber || '1234567890',
-        avatar: userData.avatar || 'https://s3.amazonaws.com/uifaces/avatars/twitter/josephstein/128.jpg',
-        defaultPrivacyLevel: 'public'
+        phoneNumber: userData.phoneNumber || "1234567890",
+        avatar:
+          userData.avatar || "https://s3.amazonaws.com/uifaces/avatars/twitter/josephstein/128.jpg",
+        defaultPrivacyLevel: "public",
       },
     });
+  }
+
+  async getProducts(id: number) {
+    let products = await this.request.get("/products");
+
+
+    return;
+
   }
 }

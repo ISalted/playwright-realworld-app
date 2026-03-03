@@ -17,4 +17,8 @@ export class ApiClient {
   async waitForTimeout(seconds: number) {
     return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
   }
+
+  async get(seconds: number) {
+    return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+  }
 }

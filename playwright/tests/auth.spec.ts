@@ -1,6 +1,6 @@
 import { test, expect } from '../lib/fixtures';
 
-test.describe.only('User Sign-up and Login', () => {
+test.describe('User Sign-up and Login', () => {
 
   let testUser: any;
 

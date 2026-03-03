@@ -27,7 +27,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ["list"],
-    // ["html"],
+    ["html"],
     // ["json", { outputFile: process.env.RESULTS_JSON }],
     // [
     //   "./node_modules/@testomatio/reporter/lib/adapter/playwright.js",

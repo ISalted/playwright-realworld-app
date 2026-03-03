@@ -2,7 +2,8 @@ import { Page } from '@playwright/test';
 import { step } from '../helpers/step';
 
 export class BasePage {
-  constructor(protected readonly page: Page) {}
+  // constructor(protected readonly page: Page) {}
+  constructor(public readonly page: Page) {}
 
   @step()
   async navigateTo(url: string) {

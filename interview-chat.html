@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chat Interview Mock</title>
+    <style>
+        body { font-family: sans-serif; padding: 40px; background: #f0f0f0; }
+        .box { background: white; padding: 20px; border-radius: 10px; width: 400px; margin: auto; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        #display { height: 100px; border: 1px solid #ccc; padding: 10px; overflow-y: auto; margin-bottom: 10px; background: #fafafa; }
+        input { width: 94%; padding: 10px; margin-bottom: 10px; }
+        button { padding: 10px; cursor: pointer; }
+        #copy-btn { display: none; background: #28a745; color: white; border: none; }
+        #gen-btn { background: #007bff; color: white; border: none; }
+        #gen-btn:disabled { background: #ccc; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h3>AI Chat Mock</h3>
+    <input type="text" id="user-input" data-testid="chat-input" placeholder="Type something...">
+    <div id="display" data-testid="response-area"></div>
+
+    <button id="gen-btn" data-testid="submit-button">Generate Response</button>
+    <button id="copy-btn" data-testid="copy-button">Copy</button>
+    <p id="status" style="font-size: 12px; color: #666;">Ready</p>
+</div>
+
+<script>
+    const btn = document.getElementById('gen-btn');
+    const input = document.getElementById('user-input');
+    const display = document.getElementById('display');
+    const copy = document.getElementById('copy-btn');
+    const status = document.getElementById('status');
+
+    const msg = "This is a streamed AI response.";
+    btn.onclick = function() {
+        const val = input.value.trim();
+        if(!val) return alert("Enter text!");
+
+        // Reset
+        display.innerText = "";
+        btn.disabled = true;
+        copy.style.display = "none";
+        status.innerText = "AI is thinking...";
+
+        let i = 0;
+        // Start "Streaming"
+        const interval = setInterval(() => {
+            status.innerText = "AI is typing...";
+            display.innerText += msg[i];
+            i++;
+            if (i >= msg.length) {
+                clearInterval(interval);
+                btn.disabled = false;
+                copy.style.display = "inline-block";
+                status.innerText = "Done!";
+            }
+        }, 30);
+    };
+</script>
+
+</body>
+</html>
